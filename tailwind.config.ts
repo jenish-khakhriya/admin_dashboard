@@ -12,6 +12,12 @@ const config: Config = {
         primary: "#ff0000", // Example custom color
         secondary: "#9333EA",
       },
+       backgroundImage: {
+        "custom-gradient": "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
+      },
+        boxShadow: {
+        "custom": "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+      },
     },
   },
   plugins: [],
