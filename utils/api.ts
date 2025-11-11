@@ -48,3 +48,19 @@ export const apiDelete = async (endpoint: string, config?: AxiosRequestConfig) =
     throw error;
   }
 };
+
+
+//check api auth 
+
+export const checkAuth = async (token : string,id : string) => {
+  if(!(id && token)) return true;
+  try{
+      const data = await apiGet({},`/${id}`);
+      if(data?.token !== token) return true;
+
+      return false
+  }
+  catch(err){
+    return true;
+  }
+}

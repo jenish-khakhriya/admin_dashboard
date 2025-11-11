@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Button from "../molecules/Button";
+import { ROUTES } from "@/constant/route";
+import Link from "next/link";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -105,6 +107,7 @@ const handleSubmit = async (values: { email: string; password: string }) => {
           </Form>
         )}
       </Formik>
+      <div className="text-center">Don't have an account yet? <Link href={ROUTES.REGISTER} className="text-blue-600">Register now</Link></div>
     </div>
   );
 };

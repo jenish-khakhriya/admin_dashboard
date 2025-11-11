@@ -30,6 +30,12 @@ export async function POST(req: Request) {
       maxAge: 60 * 60 * 24 * 7,
     });
 
+     response.cookies.set("email", user.email, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+
     return response;
   } catch (error) {
     console.error("Login API Error:", error);

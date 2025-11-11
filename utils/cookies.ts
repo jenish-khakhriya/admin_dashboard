@@ -1,5 +1,7 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { NextRequest, NextResponse } from "next/server";
 
 interface CookieOptions {
   httpOnly?: boolean;
@@ -43,4 +45,17 @@ export const getCookies = (req: NextApiRequest): Record<string, string> => {
   });
 
   return cookies;
+};
+
+
+
+
+export const clearAllCookies = (req: NextRequest, res: NextResponse) => {
+  // Get all cookies from the request
+  const cookies = req?.cookies?.getAll(); // returns array of { name: string, value: string }
+
+  // Delete each cookie safely
+  cookies.forEach((cookie) => {
+    res?.cookies?.delete(cookie.name); // path "/" ensures cookie is cleared globally
+  });
 };
