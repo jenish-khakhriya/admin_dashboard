@@ -19,7 +19,6 @@ export default function SetCookie({ fullName }: { fullName: string }) {
         if (!response.ok) {
           throw new Error("Failed to set cookie");
         }
-        console.log("Cookie set successfully");
       } catch (error) {
         console.error("Error setting cookie:", error);
       }

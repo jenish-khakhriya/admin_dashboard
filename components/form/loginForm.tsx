@@ -40,7 +40,6 @@ const LoginForm = () => {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("Logged in:", data);
         router.push("/dashboard");
       } else {
         setIsUserFound(true);

@@ -5,7 +5,6 @@ import { apiGet } from '@/utils/api';
 import React, { useCallback, useState } from 'react'
 
     const useUserData = (data : User[],count : number,userId : string) => {
-        console.log(data);
         
         const [userData,setUserData] = useState({data : data ?? [],count : count ?? 0});
         const [isLoading,setIsLoading] = useState(false);

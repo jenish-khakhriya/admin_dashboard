@@ -18,7 +18,6 @@ export async function POST(req: Request) {
       { headers: { "Content-Type": "application/json" } },
       
     );
-console.log(data,"data@");
 
 
     const response = NextResponse.json({
@@ -26,28 +25,28 @@ console.log(data,"data@");
       user: data,
     });
 
-    response.cookies.set("token", data?.token, {
-      httpOnly: true,
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      sameSite: "lax",
-    });
+    // response.cookies.set("token", data?.token, {
+    //   httpOnly: true,
+    //   path: "/",
+    //   maxAge: 60 * 60 * 24 * 7, // 7 days
+    //   sameSite: "lax",
+    // });
 
-    response.cookies.set("userId", data.id, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7,
-      sameSite: "lax",
-    });
+    // response.cookies.set("userId", data.id, {
+    //   path: "/",
+    //   maxAge: 60 * 60 * 24 * 7,
+    //   sameSite: "lax",
+    // });
 
-    response.cookies.set("email", data.email, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7,
-      sameSite: "lax",
-    });
-     response.cookies.set("fullName", data.fullName, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7,
-    });
+    // response.cookies.set("email", data.email, {
+    //   path: "/",
+    //   maxAge: 60 * 60 * 24 * 7,
+    //   sameSite: "lax",
+    // });
+    //  response.cookies.set("fullName", data.fullName, {
+    //   path: "/",
+    //   maxAge: 60 * 60 * 24 * 7,
+    // });
 
 
     return response;

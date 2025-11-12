@@ -16,7 +16,8 @@ const RegisterForm = () => {
   const [isUserExists, setIsUserExists] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // ✅ Yup validation schema
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const RegisterSchema = Yup.object().shape({
     fullName: Yup.string()
       .min(3, "Full name must be at least 3 characters")
@@ -26,14 +27,12 @@ const RegisterForm = () => {
       .email("Invalid email format")
       .required("Email is required"),
 
-   
-
     password: Yup.string()
       .min(8, "Password must be at least 8 characters")
       .matches(/[A-Z]/, "Must contain at least 1 uppercase letter")
       .matches(/[a-z]/, "Must contain at least 1 lowercase letter")
       .matches(/[0-9]/, "Must contain at least 1 number")
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, "Must contain at least 1 special character")
+      .matches(/[!@#$%^&*(),.?\":{}|<>]/, "Must contain at least 1 special character")
       .required("Password is required"),
 
     confirmPassword: Yup.string()
@@ -41,7 +40,6 @@ const RegisterForm = () => {
       .required("Confirm password is required"),
   });
 
-  // ✅ Form submission handler
   const handleSubmit = async (values: {
     fullName: string;
     email: string;
@@ -49,8 +47,7 @@ const RegisterForm = () => {
     password: string;
     confirmPassword: string;
   }) => {
-
-    const {email,fullName,mobileNumber,password} = values
+    const { email, fullName, mobileNumber, password } = values;
     try {
       const ischeckEmail = await apiGet();
       if (ischeckEmail?.some(({ email }: { email: string }) => email === values.email)) {
@@ -58,22 +55,29 @@ const RegisterForm = () => {
         return;
       }
 
-
       setIsLoading(true);
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({email,fullName,...(mobileNumber && {mobileNumber : mobileNumber}),password}),
+        body: JSON.stringify({
+          email,
+          fullName,
+          ...(mobileNumber && { mobileNumber: mobileNumber }),
+          password,
+        }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        console.log("User registered:", data);
-        router.push("/dashboard");
+        setIsSuccess(true);
+        setIsUserExists(false);
+        setTimeout(() => {
+          router.push("/login");
+        },1200)
       } else {
         setIsUserExists(true);
-        setIsUserExists(false);
+        setIsSuccess(false);
       }
     } catch (error) {
       console.error("Registration failed:", error);
@@ -84,6 +88,12 @@ const RegisterForm = () => {
 
   return (
     <div className="w-full flex flex-col gap-2">
+      {isSuccess && (
+        <div className="text-green-600 text-center h-5">
+          Registration successful!
+        </div>
+      )}
+
       <div className="text-orange-500 text-center h-5">
         {isUserExists && "User already exists!"}
       </div>
@@ -139,7 +149,6 @@ const RegisterForm = () => {
                 placeholder="Mobile Number"
                 className="p-2 w-full rounded border-2 border-black bg-transparent outline-none"
               />
-             
             </div>
 
             {/* Password */}
@@ -201,8 +210,12 @@ const RegisterForm = () => {
           </Form>
         )}
       </Formik>
+
       <div className="text-center">
-        Already have an account? <Link href={ROUTES.LOGIN} className="text-blue-600">Sign in</Link>
+        Already have an account?{" "}
+        <Link href={ROUTES.LOGIN} className="text-blue-600">
+          Sign in
+        </Link>
       </div>
     </div>
   );
