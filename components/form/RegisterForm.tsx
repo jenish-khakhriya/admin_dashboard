@@ -26,9 +26,7 @@ const RegisterForm = () => {
       .email("Invalid email format")
       .required("Email is required"),
 
-    mobileNumber: Yup.string()
-      .matches(/^[0-9]{10}$/, "Mobile number must be 10 digits")
-      .required("Mobile number is required"),
+   
 
     password: Yup.string()
       .min(8, "Password must be at least 8 characters")
@@ -65,7 +63,7 @@ const RegisterForm = () => {
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({email,fullName,mobileNumber,password}),
+        body: JSON.stringify({email,fullName,...(mobileNumber && {mobileNumber : mobileNumber}),password}),
       });
 
       const data = await res.json();
@@ -141,11 +139,7 @@ const RegisterForm = () => {
                 placeholder="Mobile Number"
                 className="p-2 w-full rounded border-2 border-black bg-transparent outline-none"
               />
-              <ErrorMessage
-                name="mobileNumber"
-                component="div"
-                className="text-red-500 text-sm"
-              />
+             
             </div>
 
             {/* Password */}

@@ -1,6 +1,6 @@
 "use client";
 
-import {  memo, useState } from "react";
+import { memo, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Button from "../molecules/Button";
@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
   fullName: Yup.string().required("Full name is required"),
   Email: Yup.string().email("Invalid email").required("Email is required"),
   mobileNumber: Yup.string()
-    .matches(/^\+?\d{7,15}$/, "Invalid mobile number")
+    .matches(/^[0-9]{10}$/, "Mobile number must be exactly 10 digits")
     .required("Mobile number is required"),
 });
 
@@ -25,10 +25,10 @@ const UserForm = ({
   handleClose,
   userId,
   id
-} : UserFormProps) => {
-    const [isLoading,setIsLoading] = useState(false);
-    const [errorMessage,setErrorMessage] = useState("");
-    
+}: UserFormProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   return (
     <div className="md:w-[600px] w-full h-auto bg-white rounded-md flex flex-col gap-4 p-5 shadow-md">
       <h1 className="text-2xl text-black font-semibold">
@@ -43,38 +43,38 @@ const UserForm = ({
         }}
         validationSchema={validationSchema}
         enableReinitialize
-       onSubmit={async (values, { resetForm }) => {
-  setIsLoading(true);
-  setErrorMessage("");
+        onSubmit={async (values, { resetForm }) => {
+          setIsLoading(true);
+          setErrorMessage("");
 
-  const payload: User = {
-    ...data,
-    ...values,
-    id: isEdit ? data?.id as string : generateId(),
-    createdDate: isEdit ? data?.createdDate as string : new Date().toISOString(),
-  };
+          const payload: User = {
+            ...data,
+            ...values,
+            id: isEdit ? data?.id as string : generateId(),
+            createdDate: isEdit ? data?.createdDate as string : new Date().toISOString(),
+          };
 
-  try {
-    let updatedData: User[] = [];
+          try {
+            let updatedData: User[] = [];
 
-    if (isEdit) {
-      updatedData = [...(userData ?? [])];
-      updatedData.splice(id ?? 0, 1, payload);
-    } else {
-      updatedData = [...(userData ?? []), payload];
-    }
+            if (isEdit) {
+              updatedData = [...(userData ?? [])];
+              updatedData.splice(id ?? 0, 1, payload);
+            } else {
+              updatedData = [...(userData ?? []), payload];
+            }
 
-    await apiPut(`/${userId}`, { data: updatedData,...(!isEdit && {dataCount : (userData?.length ?? 0) + 1}) });
+            await apiPut(`/${userId}`, { data: updatedData, ...(!isEdit && { dataCount: (userData?.length ?? 0) + 1 }) });
 
-    handleUpdateUserData();
-    handleClose();
-    resetForm();
-  } catch (err: any) {
-    setErrorMessage(err?.message || "Something went wrong");
-  } finally {
-    setIsLoading(false);
-  }
-}}
+            handleUpdateUserData();
+            handleClose();
+            resetForm();
+          } catch (err: any) {
+            setErrorMessage(err?.message || "Something went wrong");
+          } finally {
+            setIsLoading(false);
+          }
+        }}
 
       >
         {() => (
@@ -120,6 +120,12 @@ const UserForm = ({
               <Field
                 name="mobileNumber"
                 placeholder="Enter mobile number"
+                type="tel"
+                inputMode="numeric"
+                maxLength={10}
+                onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, ""); // remove non-digits
+                }}
                 className="border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-400 focus:outline-none"
               />
               <ErrorMessage
@@ -128,6 +134,7 @@ const UserForm = ({
                 className="text-red-500 text-xs mt-1"
               />
             </div>
+
             <div className="">{errorMessage}</div>
             {/* Buttons */}
             <div className="flex gap-3 justify-end">
@@ -144,7 +151,7 @@ const UserForm = ({
               >
                 Reset
               </Button>
-               <Button
+              <Button
                 type="button"
                 onClick={handleClose}
                 className="bg-red-500 hover:bg-red-600 text-white"
@@ -160,4 +167,4 @@ const UserForm = ({
   );
 };
 
-export default  memo(UserForm);
+export default memo(UserForm);

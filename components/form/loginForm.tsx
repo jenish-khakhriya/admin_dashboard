@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -13,45 +13,50 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isUserFound, setIsUserFound] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+
     password: Yup.string()
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[A-Z]/, "Must contain at least 1 uppercase letter")
-    .matches(/[a-z]/, "Must contain at least 1 lowercase letter")
-    .matches(/[0-9]/, "Must contain at least 1 number")
-    .matches(/[!@#$%^&*(),.?":{}|<>]/, "Must contain at least 1 special character")
-    .required("Password is required"),
+      .min(8, "Password must be at least 8 characters")
+      .matches(/[A-Z]/, "Must contain at least 1 uppercase letter")
+      .matches(/[a-z]/, "Must contain at least 1 lowercase letter")
+      .matches(/[0-9]/, "Must contain at least 1 number")
+      .matches(/[!@#$%^&*(),.?\":{}|<>]/, "Must contain at least 1 special character")
+      .required("Password is required"),
   });
 
-const handleSubmit = async (values: { email: string; password: string }) => {
-  setIsLoading(true);
-  try {
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+  const handleSubmit = async (values: { email: string; password: string }) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      console.log("Logged in:", data);
-      router.push("/dashboard");
-    } else {
-      setIsUserFound(true);
+      if (res.ok) {
+        console.log("Logged in:", data);
+        router.push("/dashboard");
+      } else {
+        setIsUserFound(true);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error("Login failed:", error);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
-
+  };
 
   return (
     <div className="w-full flex flex-col gap-2">
-        <div className="text-red-500 text-center h-5">{isUserFound && "User Not Found!"}</div>
+      <div className="text-red-500 text-center h-5">
+        {isUserFound && "User Not Found!"}
+      </div>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={LoginSchema}
@@ -73,9 +78,8 @@ const handleSubmit = async (values: { email: string; password: string }) => {
               />
             </div>
 
-            <div className=" ">
-             <div className="relative">
-                 <Field
+            <div className="relative">
+              <Field
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password"
@@ -88,7 +92,6 @@ const handleSubmit = async (values: { email: string; password: string }) => {
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
-             </div>
               <ErrorMessage
                 name="password"
                 component="div"
@@ -103,11 +106,16 @@ const handleSubmit = async (values: { email: string; password: string }) => {
             >
               Login
             </Button>
-            
           </Form>
         )}
       </Formik>
-      <div className="text-center">Don't have an account yet? <Link href={ROUTES.REGISTER} className="text-blue-600">Register now</Link></div>
+
+      <div className="text-center">
+        Don't have an account yet?{" "}
+        <Link href={ROUTES.REGISTER} className="text-blue-600">
+          Register now
+        </Link>
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import RegisterForm from "@/components/form/RegisterForm";
 
 export default function Register() {
   return (
-    <div className="flex flex-col h-screen gap-32 items-center justify-start bg-custom-gradient py-20">
+    <div className="flex flex-col min-h-screen gap-32 items-center justify-start bg-custom-gradient py-20">
         <h1 className="font-bold text-4xl">
             Register Page
         </h1>

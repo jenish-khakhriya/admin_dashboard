@@ -2,7 +2,7 @@ import LoginForm from "@/components/form/loginForm";
 
 export default function Login() {
   return (
-    <div className="flex flex-col h-screen gap-32 items-center justify-start bg-custom-gradient py-20">
+    <div className="flex flex-col min-h-screen gap-32 items-center justify-start bg-custom-gradient py-20">
         <h1 className="font-bold text-4xl">
             Login Page
         </h1>
