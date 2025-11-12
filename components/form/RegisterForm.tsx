@@ -200,7 +200,7 @@ const RegisterForm = () => {
             <Button
               type="submit"
               className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
-              isloading={isLoading}
+              isLoading={isLoading}
             >
               Register
             </Button>

@@ -1,9 +1,9 @@
-// app/about/layout.tsx
+
 import Header from '@/components/layout/Header';
 import { ReactNode } from 'react';
 
 interface DashboardLayoutProps {
-  children: ReactNode;  // Type for children prop
+  children: ReactNode;  
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {

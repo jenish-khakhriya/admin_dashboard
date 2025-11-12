@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { apiPost } from "@/utils/api"; // adjust the path
+import { apiPost } from "@/utils/api"; 
 
 export async function POST(req: Request) {
   try {
@@ -13,8 +13,6 @@ export async function POST(req: Request) {
       );
     }
 
-
-    // ✅ Send data to MockAPI using apiPost
     const data = await apiPost(
       { fullName, email, mobileNumber, password, dataCount : 0 },
       { headers: { "Content-Type": "application/json" } },
@@ -23,7 +21,6 @@ export async function POST(req: Request) {
 console.log(data,"data@");
 
 
-    // 🔹 Create response and set cookies
     const response = NextResponse.json({
       message: "User registered successfully",
       user: data,
@@ -47,6 +44,11 @@ console.log(data,"data@");
       maxAge: 60 * 60 * 24 * 7,
       sameSite: "lax",
     });
+     response.cookies.set("fullName", data.fullName, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
 
     return response;
   } catch (error: any) {

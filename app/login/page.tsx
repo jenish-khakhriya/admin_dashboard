@@ -6,7 +6,7 @@ export default function Login() {
         <h1 className="font-bold text-4xl">
             Login Page
         </h1>
-        <div className="w-[500px] pb-4 pt-1 px-6 bg-[#ffffff42]  rounded-md backdrop-blur-sm shadow-custom">
+        <div className="sm:w-[500px] w-full pb-4 pt-1 px-6 bg-[#ffffff42]  rounded-md backdrop-blur-sm shadow-custom">
             <LoginForm />
         </div>
     </div>

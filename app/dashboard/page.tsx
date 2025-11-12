@@ -1,5 +1,6 @@
 
-import { apiGet } from "@/utils/api";  // Import the SetCookie component
+import UsersTable from "@/components/molecules/UsersTable";
+import { apiGet } from "@/utils/api"; 
 import { cookies } from "next/headers";
 
 export default async function Dashboard() {
@@ -24,12 +25,9 @@ export default async function Dashboard() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-80px)] overflow-auto items-center justify-center px-7 py-7">
-      <div className="border border-gray-100 bg-green-50 shadow-custom w-full h-full rounded-lg">
-        {/* <p>User ID: {userId || "Not found"}</p>
-        <p>Data count: {count}</p>
-        <pre>{JSON.stringify(data, null, 2)}</pre> */}
-
+    <div className="flex w-full h-[calc(100vh-80px)] overflow-auto items-center justify-center px-7 py-7">
+      <div className="w-full h-full rounded-lg">
+          <UsersTable count={count} data={data} userId={userId as string}/>
       </div>
     </div>
   );
