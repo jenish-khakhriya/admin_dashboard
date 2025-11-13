@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { apiGet, checkAuth } from "./utils/api";
+import { ROUTES } from "./constant/route";
 
-const protectedRoutes = ["/dashboard"];
-const authRoutes = ["/login", "/register"];
+const protectedRoutes = [ROUTES.DASHBOARD];
+const authRoutes = [ROUTES.LOGIN, ROUTES.DASHBOARD];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -12,15 +13,10 @@ export async function middleware(req: NextRequest) {
 
   const isAuthenticated = await checkAuth(token || '', id || '');
 
-  if (pathname === "/") {
-    return isAuthenticated
-      ? NextResponse.redirect(new URL("/dashboard", req.url))
-      : NextResponse.redirect(new URL("/login", req.url));
-  }
-
+ 
   if (authRoutes.some(route => pathname.startsWith(route))) {
     if (!isAuthenticated) {
-      return NextResponse.redirect(new URL('/dashboard', req.url));
+      return NextResponse.redirect(new URL(ROUTES.DASHBOARD, req.url));
     }
     return NextResponse.next();
   }
@@ -36,7 +32,7 @@ export async function middleware(req: NextRequest) {
 }
 
 function redirectToLogin(req: NextRequest) {
-  const response = NextResponse.redirect(new URL('/login', req.url));
+  const response = NextResponse.redirect(new URL(ROUTES.LOGIN, req.url));
   
   response.cookies.delete('token');
   response.cookies.delete('userId');
@@ -46,5 +42,5 @@ function redirectToLogin(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/","/dashboard/:path*", "/login", "/register"],
+  matcher: ["/dashboard/:path*", "/login", "/register"],
 };
