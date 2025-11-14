@@ -7,7 +7,7 @@ import Link from "next/link";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constant/route";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -21,10 +21,10 @@ const Header = () => {
   const { push } = useRouter();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   return (
-    <header className="w-full flex justify-center relative items-center bg-[#E6F0FD] max-md:border-b max-md:border-b-white">
-      <div className="xl:w-[1240px] w-full xl:px-0 px-2 grid md:grid-cols-3 grid-cols-2 items-center py-4 gap-6">
+    <header className="w-full flex justify-center relative items-center bg-[#E6F0FD] max-md:border-b max-md:border-b-black/25">
+      <div className="xl:w-[1240px] w-full xl:p-0 md:px-5 px-2 grid md:grid-cols-3 grid-cols-2 items-center py-4 gap-6">
         <Image
-          src={logo} // path relative to public/
+          src={logo} 
           alt="logo"
           className="md:w-[108px] w-[80px] object-contain"
           width={500}
@@ -79,7 +79,6 @@ const Header = () => {
             </div>
           )}
 
-          {/* Cancel (X) Icon */}
           {isOpenMenu && (
             <div className="relative w-8 h-8">
               <span className="absolute top-1/2 left-0 w-8 h-1 bg-black rotate-45 rounded origin-center"></span>
@@ -136,4 +135,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

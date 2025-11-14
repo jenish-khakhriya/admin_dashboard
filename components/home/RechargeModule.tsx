@@ -1,13 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import Heading from "./Heading";
 import Image from "next/image";
 import Button from "./Button";
 import rightIcon from "../../public/assets/right.svg";
 import { PaymentType } from "@/utils/type";
-
-//  <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:pt-[50px] xl:pb-[80px] md:py-6 py-2 xl:p-0 lg:px-6 md:px-5 px-2">
-//       <div className="xl:w-[1240px] w-full xl:flex grid lg:grid-cols-2 grid-cols-1 gap-6 items-center lg:rounded-[38px] lg:bg-white xl:px-[80px] lg:px-[40px] xl:py-[60px] lg:py-[30px]"></div>
-
 
 const RechargeModule = ({ data } : {data : PaymentType[]}) => {
   return (
@@ -26,7 +22,7 @@ const RechargeModule = ({ data } : {data : PaymentType[]}) => {
                 className="w-full cursor-pointer transition-all duration-200 hover:shadow-custom flex flex-col justify-center gap-3 items-center aspect-square bg-white rounded-2xl"
               >
                 <Image
-                  src={item?.icon} // path relative to public/
+                  src={item?.icon} 
                   alt="logo"
                   className="w-[84px] h-[84px] object-contain"
                   width={500}
@@ -52,4 +48,4 @@ const RechargeModule = ({ data } : {data : PaymentType[]}) => {
   );
 };
 
-export default RechargeModule;
+export default memo(RechargeModule);

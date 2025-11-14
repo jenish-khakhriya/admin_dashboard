@@ -1,5 +1,6 @@
 import Image from "next/image";
 import trueIcon from "../../public/assets/circleCheckFilled.svg";
+import { memo } from "react";
 
 const Listing = ({data} : {data : string[]}) => {
   return (
@@ -22,4 +23,4 @@ const Listing = ({data} : {data : string[]}) => {
   );
 };
 
-export default Listing;
+export default memo(Listing);

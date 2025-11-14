@@ -3,12 +3,15 @@ import Button from "./Button";
 import rightIcon from "../../public/assets/right.svg";
 import Image from "next/image";
 import { AppointmentType } from "@/utils/type";
+import { memo } from "react";
+
+
 
 const Appointment = ({ data } : {data : AppointmentType}) => {
   return (
-    <div className="w-full bg-white flex flex-col justify-center items-center py-[80px]">
-      <div className="w-[1240px] grid grid-cols-2 items-center gap-5">
-        <div className="w-[610px] shrink-0 flex flex-col gap-9">
+    <div className="w-full bg-white flex flex-col justify-center items-center xl:py-[80px] lg:py-[40px] md:py-6 py-4 xl:p-0 md:px-5 px-2">
+      <div className="xl:w-[1240px] w-full grid lg:grid-cols-2 grid-cols-1 items-center lg:gap-5 gap-2">
+        <div className="w-full shrink-0 flex flex-col lg:gap-9 gap-4">
           <Heading
             className={""}
             description={data?.description}
@@ -28,7 +31,7 @@ const Appointment = ({ data } : {data : AppointmentType}) => {
           <Image
             src={data?.image}
             alt="logo"
-            className="w-full h-[426px] object-contain"
+            className="w-full lg:h-[426px] object-contain"
             width={500}
             height={300}
           />
@@ -38,4 +41,4 @@ const Appointment = ({ data } : {data : AppointmentType}) => {
   );
 };
 
-export default Appointment;
+export default memo(Appointment);

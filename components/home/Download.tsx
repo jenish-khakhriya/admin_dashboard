@@ -1,6 +1,7 @@
 import Image from "next/image";
 import appleIcon from "../../public/assets/appleIcon.svg";
 import googleIcon from "../../public/assets/googleIcon.svg";
+import { memo } from "react";
 
 const Download = () => {
   return (
@@ -28,4 +29,4 @@ const Download = () => {
   );
 };
 
-export default Download;
+export default memo(Download);

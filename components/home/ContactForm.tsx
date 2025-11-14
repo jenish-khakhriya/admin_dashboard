@@ -1,6 +1,7 @@
 "use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { memo } from "react";
 import * as Yup from "yup";
 
 const ContactForm = () => {
@@ -22,16 +23,14 @@ const ContactForm = () => {
           message: Yup.string().required("Required"),
           agree: Yup.bool().oneOf([true], "You must accept the terms."),
         })}
-        onSubmit={(values) => {
-          console.log(values);
-          alert("Form submitted!");
+        onSubmit={(values,{resetForm}) => {
+          resetForm();
         }}
       >
         {() => (
-          <Form className="flex flex-col gap-8">
+          <Form className="flex flex-col lg:gap-8 gap-3">
 
-            {/* Row: First & Last Name */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
               <div>
                 <Field
                   name="firstName"
@@ -51,8 +50,7 @@ const ContactForm = () => {
               </div>
             </div>
 
-            {/* Row: Email & Phone */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
               <div>
                 <Field
                   name="email"
@@ -72,7 +70,6 @@ const ContactForm = () => {
               </div>
             </div>
 
-            {/* Message */}
             <div>
               <Field
                 as="textarea"
@@ -92,7 +89,6 @@ const ContactForm = () => {
             </label>
             <ErrorMessage name="agree" className="text-red-500 text-sm" component="div" />
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-full text-lg"
@@ -107,4 +103,4 @@ const ContactForm = () => {
 }
 
 
-export default ContactForm;
+export default memo(ContactForm);

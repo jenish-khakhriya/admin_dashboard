@@ -4,19 +4,20 @@ import Listing from "./Listing";
 import Button from "./Button";
 import rightIcon from "../../public/assets/right.svg";
 import { UpcomingAppointmentsType } from "@/utils/type";
+import { memo } from "react";
 
-const UpcomingAppointments = ({ data } : {data : UpcomingAppointmentsType}) => {
+const UpcomingAppointments = ({ data }: { data: UpcomingAppointmentsType }) => {
   return (
-    <div className="w-full bg-white flex flex-col justify-center items-center py-[80px]">
-      <div className="w-[1240px] grid grid-cols-2 items-center gap-5">
+    <div className="w-full bg-white flex flex-col justify-center items-center xl:py-[80px] md:py-6 py-4 xl:px-0 md:px-5 px-2">
+      <div className="xl:w-[1240px] w-full grid lg:grid-cols-2 grid-cols-1 items-center md:gap-5 gap-3">
         <Image
           src={data?.image}
           alt="logo"
-          className="w-full h-[426px] object-contain"
+          className="w-full lg:h-[426px] object-contain"
           width={500}
           height={300}
         />
-        <div className="flex flex-col w-full shrink-0 gap-9">
+        <div className="flex flex-col w-full shrink-0 md:gap-9 gap-4">
           <Heading
             title={data?.title}
             description={data?.description}
@@ -37,4 +38,4 @@ const UpcomingAppointments = ({ data } : {data : UpcomingAppointmentsType}) => {
   );
 };
 
-export default UpcomingAppointments;
+export default memo(UpcomingAppointments);

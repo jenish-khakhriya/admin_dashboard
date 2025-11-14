@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 
 interface ButtonProps {
   logo?: string;              
@@ -36,4 +36,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default memo(Button);

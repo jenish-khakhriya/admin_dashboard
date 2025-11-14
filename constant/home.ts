@@ -5,14 +5,14 @@ import dthIcon from "../public/assets/dthIcon.svg";
 import carIcon from "../public/assets/cartIcon.svg";
 import insuranceIcon from "../public/assets/insuranceIcon.svg";
 import investIcon from "../public/assets/investIcon.svg";
-import vector from "../public/assets/Vector.svg";
+import vector from "../public/assets/vec.svg";
 import scanicon from "../public/assets/scanicon.svg";
 import vector1 from "../public/assets/Vector1.svg";
 import routeIcon from "../public/assets/routeIcon.svg";
 import dataIcon from "../public/assets/dataIcon.svg";
 import security from "../public/assets/security.svg";
 import reduce from "../public/assets/reduce.svg";
-import plane from "../public/assets/plane.svg";
+import plane from "../public/assets/runner.svg";
 import { AppointmentType } from "@/utils/type";
 
 export const HomeBannerObj = {

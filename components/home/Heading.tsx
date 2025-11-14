@@ -28,7 +28,7 @@ const Heading = ({
       </div>
         
       {description && (
-        <p className="lg:text-[#181945] text-[#8C94A3] xl:text-lg text-base font-urbanist lg:opacity-60">
+        <p className="lg:text-[#181945] max-md:text-justify text-[#8C94A3] xl:text-lg text-base font-urbanist lg:opacity-60">
           {description}
         </p>
       )}
