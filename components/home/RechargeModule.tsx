@@ -5,16 +5,20 @@ import Button from "./Button";
 import rightIcon from "../../public/assets/right.svg";
 import { PaymentType } from "@/utils/type";
 
+//  <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:pt-[50px] xl:pb-[80px] md:py-6 py-2 xl:p-0 lg:px-6 md:px-5 px-2">
+//       <div className="xl:w-[1240px] w-full xl:flex grid lg:grid-cols-2 grid-cols-1 gap-6 items-center lg:rounded-[38px] lg:bg-white xl:px-[80px] lg:px-[40px] xl:py-[60px] lg:py-[30px]"></div>
+
+
 const RechargeModule = ({ data } : {data : PaymentType[]}) => {
   return (
-    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center py-[50px]">
-      <div className="w-[1240px] flex flex-col gap-9 items-center rounded-[38px]">
+    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:py-[50px] md:py-6 py-4 xl:p-0 md:px-5 px-2">
+      <div className="xl:w-[1240px] w-full flex flex-col xl:gap-9 md:gap-5 gap-4 items-center rounded-[38px]">
         <Heading
           title={"Recharges & Bill Payments"}
           description={"Enjoy fast payments on every recharge & bill payment"}
-          className={"!gap-5"}
+          className={"!gap-3"}
         />
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] w-full gap-5">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] w-full md:gap-5 gap-3">
           {data?.map((item, index: number) => {
             return (
               <div

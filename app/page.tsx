@@ -17,17 +17,17 @@ export default function Home() {
     <div className="w-full flex flex-col">
       <Header />
 
-      <main className="w-full flex flex-col">
+       <main className="w-full flex flex-col">
         <HomeBanner data={HomeBannerObj} />
         <RechargeModule data={paymentObj} />
-        <Appointment data={appointment as AppointmentType} />
+        {/* <Appointment data={appointment as AppointmentType} />
         <Store data={store} />
         <UpcomingAppointments data={upcomingAppointments} />
         <PocketPay data={pocketData} />
         <Faq data={faqData} />
-        <Connect data={connect}/>
+        <Connect data={connect}/> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
       
     </div>
   );

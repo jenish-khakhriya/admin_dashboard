@@ -3,10 +3,10 @@ import trueIcon from "../../public/assets/circleCheckFilled.svg";
 
 const Listing = ({data} : {data : string[]}) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col xl:gap-4 gap-2">
       {data?.map((item: string, index: number) => {
         return (
-          <div key={index} className="flex gap-3">
+          <div key={index} className="flex gap-3 items-center">
             <Image
               src={trueIcon}
               alt="logo"
@@ -14,7 +14,7 @@ const Listing = ({data} : {data : string[]}) => {
               width={500}
               height={300}
             />
-            <p className="text-[#3B3E44] font-urbanist-400 text-lg">{item}</p>
+            <p className="text-[#3B3E44] font-urbanist-400 xl:text-lg text-sm">{item}</p>
           </div>
         );
       })}

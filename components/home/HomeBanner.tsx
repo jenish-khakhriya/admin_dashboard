@@ -10,9 +10,9 @@ import { HomeBannerType } from "@/utils/type";
 
 const HomeBanner = ({ data } : {data : HomeBannerType}) => {
   return (
-    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center pt-[50px] pb-[80px] ">
-      <div className="w-[1240px] flex gap-6 items-center rounded-[38px] bg-white px-[80px] py-[60px]">
-        <div className="flex flex-col w-[546px] shrink-0 gap-[30px]">
+    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:pt-[50px] xl:pb-[80px] md:py-6 py-4 xl:p-0 lg:px-6 md:px-5 px-2">
+      <div className="xl:w-[1240px] w-full xl:flex grid lg:grid-cols-2 grid-cols-1 gap-6 items-center lg:rounded-[38px] lg:bg-white xl:px-[80px] lg:px-[40px] xl:py-[60px] lg:py-[30px]">
+        <div className="flex flex-col xl:w-[546px] w-full shrink-0 xl:gap-[30px] gap-4">
           <Heading title={data?.title} description={data?.description} />
           <Listing data={data?.arr ?? []} />
           <Download />
