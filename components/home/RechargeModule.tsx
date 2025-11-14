@@ -7,7 +7,7 @@ import { PaymentType } from "@/utils/type";
 
 const RechargeModule = ({ data } : {data : PaymentType[]}) => {
   return (
-    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:py-[50px] md:py-6 py-4 xl:p-0 md:px-5 px-2">
+    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:py-[50px] md:py-6 py-4 xl:p-0 md:px-5 px-3">
       <div className="xl:w-[1240px] w-full flex flex-col xl:gap-9 md:gap-5 gap-4 items-center rounded-[38px]">
         <Heading
           title={"Recharges & Bill Payments"}

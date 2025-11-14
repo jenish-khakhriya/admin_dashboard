@@ -9,7 +9,7 @@ import { memo } from "react";
 
 const Appointment = ({ data } : {data : AppointmentType}) => {
   return (
-    <div className="w-full bg-white flex flex-col justify-center items-center xl:py-[80px] lg:py-[40px] md:py-6 py-4 xl:p-0 md:px-5 px-2">
+    <div className="w-full bg-white flex flex-col justify-center items-center xl:py-[80px] lg:py-[40px] md:py-6 py-4 xl:p-0 md:px-5 px-3">
       <div className="xl:w-[1240px] w-full grid lg:grid-cols-2 grid-cols-1 items-center lg:gap-5 gap-2">
         <div className="w-full shrink-0 flex flex-col lg:gap-9 gap-4">
           <Heading

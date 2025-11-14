@@ -22,7 +22,7 @@ const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   return (
     <header className="w-full flex justify-center relative items-center bg-[#E6F0FD] max-md:border-b max-md:border-b-black/25">
-      <div className="xl:w-[1240px] w-full xl:p-0 md:px-5 px-2 grid md:grid-cols-3 grid-cols-2 items-center py-4 gap-6">
+      <div className="xl:w-[1240px] w-full xl:p-0 md:px-5 px-3 grid md:grid-cols-3 grid-cols-2 items-center py-4 gap-6">
         <Image
           src={logo} 
           alt="logo"

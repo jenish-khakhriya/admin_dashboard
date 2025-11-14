@@ -8,7 +8,7 @@ import { memo } from "react";
 
 const UpcomingAppointments = ({ data }: { data: UpcomingAppointmentsType }) => {
   return (
-    <div className="w-full bg-white flex flex-col justify-center items-center xl:py-[80px] md:py-6 py-4 xl:px-0 md:px-5 px-2">
+    <div className="w-full bg-white flex flex-col justify-center items-center xl:py-[80px] md:py-6 py-4 xl:px-0 md:px-5 px-3">
       <div className="xl:w-[1240px] w-full grid lg:grid-cols-2 grid-cols-1 items-center md:gap-5 gap-3">
         <Image
           src={data?.image}

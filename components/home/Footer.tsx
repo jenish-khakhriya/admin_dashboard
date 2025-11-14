@@ -30,7 +30,7 @@ const contact = [
 ];
 const Footer = () => {
   return (
-    <footer className="w-full flex flex-col justify-center items-center lg:pt-[100px] py-8 xl:p-0 md:px-5 px-2 bg-[#032B63]">
+    <footer className="w-full flex flex-col justify-center items-center lg:pt-[100px] pt-8  xl:px-0 md:px-5 px-3 bg-[#032B63]">
       <div className="2xl:w-[1400px] xl:w-[1240px] w-full grid xl:grid-cols-4 sm:grid-cols-2 gap-5 items-top min-h-[262px]">
         <div className="flex flex-col lg:gap-9 gap-4">
           <div className="w-2/3 flex flex-col lg:gap-6 gap-4">

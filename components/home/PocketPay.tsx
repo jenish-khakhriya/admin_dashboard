@@ -7,7 +7,7 @@ import { PocketDataType } from "@/utils/type";
 
 const PocketPay = ({ data } : {data : PocketDataType}) => {
   return (
-    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:py-[80px] md:py-6 py-8 xl:px-0 md:px-5 px-2">
+    <div className="w-full bg-[#E6F0FD] flex flex-col justify-center items-center xl:py-[80px] md:py-6 py-8 xl:px-0 md:px-5 px-3">
       <div className="xl:w-[1240px] w-full flex flex-col items-center md:gap-9 gap-4">
         <Heading className={"lg:!gap-5 gap-3"} title={data?.title} description={data?.description} />
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:gap-5 gap-2">
