@@ -17,7 +17,7 @@ export default function Home() {
     <div className="w-full flex flex-col">
       <Header />
 
-      <main className="w-full flex flex-col">
+      <main className="w-full flex flex-col overflow-hidden">
 
         <ScrollAnimate>
           <HomeBanner data={HomeBannerObj} />

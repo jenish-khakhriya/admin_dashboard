@@ -30,8 +30,8 @@ const contact = [
 ];
 const Footer = () => {
   return (
-    <footer className="w-full flex flex-col justify-center items-center lg:pt-[100px] pt-8  xl:px-0 md:px-5 px-3 bg-[#032B63]">
-      <div className="2xl:w-[1400px] xl:w-[1240px] w-full grid xl:grid-cols-4 sm:grid-cols-2 gap-5 items-top min-h-[262px]">
+    <footer className="w-full flex flex-col justify-center items-center lg:pt-[100px] py-8 xl:px-0 md:px-5 px-3 bg-[#032B63]">
+      <div className="2xl:w-[1400px] xl:w-[1240px] w-full grid xl:grid-cols-4 grid-cols-2 gap-5 items-top min-h-[262px]">
         <div className="flex flex-col lg:gap-9 gap-4">
           <div className="w-2/3 flex flex-col lg:gap-6 gap-4">
             <Image
@@ -120,18 +120,18 @@ const Footer = () => {
               <p className="text-white text-base font-urbanist">
                 Download Our App Now!
               </p>
-              <div className="flex gap-2">
+              <div className="flex lg:flex-row flex-col gap-2">
                 <Image
                   src={googleIcon}
                   alt="logo"
-                  className="w-[122px] object-contain cursor-pointer"
+                  className="lg:w-[122px] w-24 object-contain cursor-pointer"
                   width={500}
                   height={300}
                 />
                 <Image
                   src={appleIcon}
                   alt="logo"
-                  className="w-[122px] object-contain cursor-pointer"
+                  className="md:w-[122px] w-24 object-contain cursor-pointer"
                   width={500}
                   height={300}
                 />

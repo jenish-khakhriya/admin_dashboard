@@ -21,7 +21,7 @@ const Header = () => {
   const { push } = useRouter();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   return (
-    <header className="w-full flex justify-center relative items-center bg-[#E6F0FD] max-md:border-b max-md:border-b-black/25">
+    <header className="w-full flex justify-center relative items-center bg-[#E6F0FD] max-md:border-b max-md:border-b-black/25 z-">
       <div className="xl:w-[1240px] w-full xl:p-0 md:px-5 px-3 grid md:grid-cols-3 grid-cols-2 items-center py-4 gap-6">
         <Image
           src={logo} 
@@ -92,9 +92,9 @@ const Header = () => {
         style={{
           height: isOpenMenu ? "368px" : "0px",
         }}
-        className="overflow-auto transition-all duration-200 flex md:hidden flex-col absolute left-0 w-full top-[69px] bg-[#F8E6DE] z-100"
+        className="overflow-auto transition-all duration-200 flex md:hidden flex-col absolute left-0 w-full top-[69px] bg-[#F8E6DE] z-50"
       >
-        <nav className="nav  justify-center items-center w-full">
+        <nav className="justify-center items-center w-full">
           <ul className="flex flex-col">
             {navLinks.map((link) => (
               <li
