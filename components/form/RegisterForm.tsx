@@ -26,13 +26,20 @@ const RegisterForm = () => {
     email: Yup.string()
       .email("Invalid email format")
       .required("Email is required"),
+    mobileNumber: Yup.string().matches(
+      /^[0-9]{10}$/,
+      "Mobile number must be exactly 10 digits"
+    ),
 
     password: Yup.string()
       .min(8, "Password must be at least 8 characters")
       .matches(/[A-Z]/, "Must contain at least 1 uppercase letter")
       .matches(/[a-z]/, "Must contain at least 1 lowercase letter")
       .matches(/[0-9]/, "Must contain at least 1 number")
-      .matches(/[!@#$%^&*(),.?\":{}|<>]/, "Must contain at least 1 special character")
+      .matches(
+        /[!@#$%^&*(),.?\":{}|<>]/,
+        "Must contain at least 1 special character"
+      )
       .required("Password is required"),
 
     confirmPassword: Yup.string()
@@ -50,7 +57,11 @@ const RegisterForm = () => {
     const { email, fullName, mobileNumber, password } = values;
     try {
       const ischeckEmail = await apiGet();
-      if (ischeckEmail?.some(({ email }: { email: string }) => email === values.email)) {
+      if (
+        ischeckEmail?.some(
+          ({ email }: { email: string }) => email === values.email
+        )
+      ) {
         setIsUserExists(true);
         return;
       }
@@ -62,7 +73,7 @@ const RegisterForm = () => {
         body: JSON.stringify({
           email,
           fullName,
-          ...(mobileNumber && { mobileNumber: mobileNumber }),
+          mobileNumber: mobileNumber ?? "",
           password,
         }),
       });
@@ -74,7 +85,7 @@ const RegisterForm = () => {
         setIsUserExists(false);
         setTimeout(() => {
           router.push("/login");
-        },1200)
+        }, 1200);
       } else {
         setIsUserExists(true);
         setIsSuccess(false);
