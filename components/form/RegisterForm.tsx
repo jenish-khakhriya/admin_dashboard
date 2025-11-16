@@ -75,6 +75,7 @@ const RegisterForm = () => {
           fullName,
           mobileNumber: mobileNumber ?? "",
           password,
+          createdAt : new Date().toISOString()
         }),
       });
 
@@ -155,10 +156,20 @@ const RegisterForm = () => {
             {/* Mobile Number */}
             <div>
               <Field
-                type="text"
                 name="mobileNumber"
-                placeholder="Mobile Number"
+                placeholder="Enter mobile number"
+                type="tel"
+                inputMode="numeric"
+                maxLength={10}
                 className="p-2 w-full rounded border-2 border-black bg-transparent outline-none"
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, ""); // remove non-digits
+                }}
+              />
+              <ErrorMessage
+                name="mobileNumber"
+                component="div"
+                className="text-red-500 text-sm"
               />
             </div>
 
