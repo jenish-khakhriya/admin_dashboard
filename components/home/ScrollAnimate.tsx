@@ -36,10 +36,10 @@ const ScrollAnimate = ({
   }, []);
 
   const directionClass = {
-    up: "translate-y-60",
-    down: "-translate-y-60",
-    left: "translate-x-60",
-    right: "-translate-x-60",
+    up: "lg:translate-y-28 translate-y-10",
+    down: "-lg:translate-y-28 translate-y-10",
+    left: "lg:translate-x-28 translate-x-10 lg:translate-y-28 translate-y-20",
+    right: "-lg:translate-x-28 -translate-x-10 lg:translate-y-28 translate-y-20",
   }[direction];
 
   return (
