@@ -4,7 +4,7 @@ import { apiGet, checkAuth } from "./utils/api";
 import { ROUTES } from "./constant/route";
 
 const protectedRoutes = [ROUTES.DASHBOARD];
-const authRoutes = [ROUTES.LOGIN, ROUTES.DASHBOARD];
+const authRoutes = [ROUTES.LOGIN, ROUTES.REGISTER];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
